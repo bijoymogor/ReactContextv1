@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./login";
+import Profile from "./Profile";
+import { LoginContext } from "./Context/LoginContext";
+
+import { useState } from 'react';
 
 function App() {
+  const [username, setUserName] = useState("");
+  const [showProfile, setShowProfile] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>dsdsd</h1>
+      <LoginContext.Provider value={{ username, setUserName, showProfile, setShowProfile }}>
+        {showProfile ? <Profile /> : <Login />}
+      </LoginContext.Provider>
     </div>
   );
 }
 
 export default App;
+
+// The Basic Idea is to create a global context and pass all the states through the context to whichever Components needs those states
+// Not the most ideal way but the most beginner way to make the states global
